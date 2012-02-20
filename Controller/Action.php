@@ -42,12 +42,14 @@ abstract class Action
 			$controller = Front::getController();
 			$view = Front::getView();
 			if(!file_exists(APP_URL . "/application/views/$controller/$view" . ".phtml")) {
+				include 'Controller/Exception.php';
 				throw new Exception("View $page not found");
 			}
 			include APP_URL . "/application/views/$controller/$view" . ".phtml";
 		}
 		else {
 			if(!file_exists(APP_URL . "/application/views/$page" . ".phtml")) {
+				include 'Controller/Exception.php';
 				throw new Exception("View $page not found");
 			}
 			include APP_URL . "/application/views/$page" . ".phtml";
@@ -78,6 +80,7 @@ abstract class Action
 
 		// Find the layout
 		if(!file_exists(APP_URL . "/application/layouts/$this->layout" . ".php")) {
+			include 'Controller/Exception.php';
 			throw new Exception("Layout $this->layout was not found");
 		}
 		include APP_URL . "/application/layouts/" . $this->layout . ".php";

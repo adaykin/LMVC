@@ -15,6 +15,7 @@
 
 namespace LMVC\Controller;
 
+include 'URI.php';
 use LMVC\URI;
 
 class Front
@@ -102,6 +103,7 @@ class Front
 	 */
 	public static function setController($uriString)
 	{
+		error_log("URI1st check: " . URI::get(0));
 		// @todo this needs some serious refactoring to be more efficient
 		// No controller was specified, so load the index controller
 		if(URI::get(0) === "") {
@@ -143,9 +145,11 @@ class Front
 		// Only the controller name or a controller, and a parameter with value was specified
 		else if(URI::getLength() === 1 || URI::getLength() === 3) {
 			$uri0 = URI::get(0);
+			error_log("URI: $uri0");
 			self::$controller = $uri0;
 			if(!file_exists(APP_URL . "/application/controllers/" . $uri0 . "Controller.php")) {
 				if(!file_exists(APP_URL . "/application/controllers/errorController.php")) {
+					include 'Controller/Exception.php';
 					throw new Exception("Unable to locate error controller");
 				}
 				else {
@@ -166,6 +170,7 @@ class Front
 			}
 			else {
 				if(!file_exists(APP_URL . "/application/controllers/errorController.php")) {
+					include 'Controller/Exception.php';
 					throw new Exception("Unable to locate error controller");
 				}
 				else {
@@ -184,6 +189,7 @@ class Front
 			self::$view = URI::get(1);
 			if(!file_exists(APP_URL . "/application/controllers/" . $uri0 . "Controller.php")) {
 				if(!file_exists(APP_URL . "/application/controllers/errorController.php")) {
+					include 'Controller/Exception.php';
 					throw new Exception("Unable to locate error controller");
 				}
 				else {
@@ -205,6 +211,7 @@ class Front
 			}
 			else {
 				if(!file_exists(APP_URL . "/application/controllers/errorController.php")) {
+					include 'Controller/Exception.php';
 					throw new Exception("Unable to locate error controller");
 				}
 				else {

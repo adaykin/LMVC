@@ -35,7 +35,9 @@ class URI
 	 */
     public static function setup($uriString)
     {
+    	error_log($uriString);
         if(self::$instance !== NULL) {
+        	include 'Exception.php';
             throw new Exception('URI is already initialized');
         }
         
@@ -52,6 +54,7 @@ class URI
     public static function getInstance()
     {
     	if(self::$instance === NULL) {
+    		include 'Exception.php';
     		throw new Exception("URI was not initialized");
     	}
     	
@@ -66,6 +69,7 @@ class URI
     public static function getLength()
     {
     	if(self::$uri === NULL) {
+    		include 'Exception.php';
     		throw new Exception('URI has not been initialized yet');	
     	}
     	
@@ -91,10 +95,12 @@ class URI
     public static function get($index)
     {
     	if(filter_var($index, FILTER_VALIDATE_INT) === false) {
+    		include 'Exception.php';
             throw new Exception('You must supply an integer index for the URI segment');
     	}
     	
     	if(self::$instance === NULL) {
+    		include 'Exception.php';
     		throw new Exception('URI has not been initialized yet');	
     	}
     	
