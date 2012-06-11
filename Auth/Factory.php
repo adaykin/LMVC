@@ -4,10 +4,10 @@
  * Performs authentication on users.
  *
  * @author	   Andy Daykin    
- * @copyright  Copyright (c) 2009 Andy Daykin
+ * @copyright  Copyright (c) 2012 Andy Daykin
  * @license    MIT http://www.opensource.org/licenses/mit-license.php
  * @version    0.1
- * @link       http://trac.andydaykin.com/browser/Settings.php
+ * @link       https://github.com/adaykin/LMVC/Settings.php
  * @package    LMVC\Auth\Factory
  */
 

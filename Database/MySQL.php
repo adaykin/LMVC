@@ -3,10 +3,10 @@
 /**
  *
  * @author	   Andy Daykin    
- * @copyright  Copyright (c) 2009 Andy Daykin
+ * @copyright  Copyright (c) 2012 Andy Daykin
  * @license    MIT http://www.opensource.org/licenses/mit-license.php
  * @version    0.1
- * @link       http://trac.andydaykin.com/browser/Database/MySQL.php
+ * @link       https://github.com/adaykin/LMVC/Database/MySQL.php
  * @package    LMVC\Database\MySQL
  */
 

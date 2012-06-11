@@ -5,10 +5,10 @@
  * base url/controller/(view)* entity/(param/value)* entity
  *
  * @author	   Andy Daykin    
- * @copyright  Copyright (c) 2009 Andy Daykin
+ * @copyright  Copyright (c) 2012 Andy Daykin
  * @license    MIT http://www.opensource.org/licenses/mit-license.php
  * @version    0.1
- * @link       http://trac.andydaykin.com/browser/URI.php
+ * @link       https://github.com/adaykin/LMVC/URI.php
  * @package    LMVC\URI
  */
 
@@ -35,7 +35,6 @@ class URI
 	 */
     public static function setup($uriString)
     {
-    	error_log($uriString);
         if(self::$instance !== NULL) {
         	include 'Exception.php';
             throw new Exception('URI is already initialized');

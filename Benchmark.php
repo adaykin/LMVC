@@ -4,10 +4,10 @@
  * Places markers at spots in code, and keeps track of markers in an array.
  *
  * @author	   Andy Daykin    
- * @copyright  Copyright (c) 2009 Andy Daykin
+ * @copyright  Copyright (c) 2012 Andy Daykin
  * @license    MIT http://www.opensource.org/licenses/mit-license.php
  * @version    0.1
- * @link       http://trac.andydaykin.com/browser/Benchmark.php
+ * @link       https://github.com/adaykin/LMVC/Benchmark.php
  * @package    LMVC\Benchmark
  */
 

@@ -6,10 +6,10 @@
  * @link http://java.sun.com/blueprints/patterns/MVC-detailed.html 
  *
  * @author	   Andy Daykin    
- * @copyright  Copyright (c) 2009 Andy Daykin
+ * @copyright  Copyright (c) 2012 Andy Daykin
  * @license    MIT http://www.opensource.org/licenses/mit-license.php
  * @version    0.1
- * @link       http://trac.andydaykin.com/browser/Controller/Front.php
+ * @link       https://github.com/adaykin/LMVC/Controller/Front.php
  * @package    LMVC\Controller\Front
  */
 
@@ -103,7 +103,6 @@ class Front
 	 */
 	public static function setController($uriString)
 	{
-		error_log("URI1st check: " . URI::get(0));
 		// @todo this needs some serious refactoring to be more efficient
 		// No controller was specified, so load the index controller
 		if(URI::get(0) === "") {
@@ -145,7 +144,6 @@ class Front
 		// Only the controller name or a controller, and a parameter with value was specified
 		else if(URI::getLength() === 1 || URI::getLength() === 3) {
 			$uri0 = URI::get(0);
-			error_log("URI: $uri0");
 			self::$controller = $uri0;
 			if(!file_exists(APP_URL . "/application/controllers/" . $uri0 . "Controller.php")) {
 				if(!file_exists(APP_URL . "/application/controllers/errorController.php")) {
