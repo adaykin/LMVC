@@ -28,9 +28,8 @@ class Front
 	/**
 	 * Prevent direct creation of the object.
 	 */
-	protected function Front()
-	{
-		
+	private function Front()
+	{		
 	}
 
 	/**
@@ -62,11 +61,7 @@ class Front
 	 */
 	public static function dispatch()
 	{
-		// Get the URL, and remove malicious characters from it
-		$uriString = self::uriClean(str_replace(BASE_URL, "", "http://" . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI']));
-		// Initialize the url so we can access the various parts of it later on
-		URI::setup($uriString);
-		self::setController($uriString);
+		self::setController();
 	}
 	
 	/**
@@ -98,10 +93,9 @@ class Front
 	 * 
 	 * @access public
 	 * @static
-	 * @param string $uriString URI to parse for route
 	 * @return void
 	 */
-	public static function setController($uriString)
+	public static function setController()
 	{
 		// @todo this needs some serious refactoring to be more efficient
 		// No controller was specified, so load the index controller
@@ -220,27 +214,5 @@ class Front
 				$controller->postDispatch();
 			}
 		}	
-	}
-	
-	/**
-	 * Cleans the uri for possible xss injection attacks by removing bad characters.
-	 * Modified slightly from code at 
-	 * @link https://svn.liip.ch/repos/public/ext/externalinput/trunk/lx/externalinput/clean.php
-	 * @access public
-	 * @static
-	 * @param string $string URI to clean
-	 * @return void
-	 */
-	public static function uriClean($string)
-	{
-		$string = str_replace(array("&amp;", "&lt;", "&gt;"), array("&amp;amp;", "&amp;lt;", "&amp;gt;"), $string);
-		        
-		// remove javascript: and vbscript: protocol
-		$string = preg_replace('#([a-z]*)[\x00-\x20\/]*=[\x00-\x20\/]*([\`\'\"]*)[\x00-\x20\/]*j[\x00-\x20]*a[\x00-\x20]*v[\x00-\x20]*a[\x00-\x20]*s[\x00-\x20]*c[\x00-\x20]*r[\x00-\x20]*i[\x00-\x20]*p[\x00-\x20]*t[\x00-\x20]*:#iUu', '$1=$2nojavascript...', $string);
-		$string = preg_replace('#([a-z]*)[\x00-\x20\/]*=[\x00-\x20\/]*([\`\'\"]*)[\x00-\x20\/]*v[\x00-\x20]*b[\x00-\x20]*s[\x00-\x20]*c[\x00-\x20]*r[\x00-\x20]*i[\x00-\x20]*p[\x00-\x20]*t[\x00-\x20]*:#iUu', '$1=$2novbscript...', $string);
-		$string = preg_replace('#([a-z]*)[\x00-\x20\/]*=[\x00-\x20\/]*([\`\'\"]*)[\x00-\x20\/]*-moz-binding[\x00-\x20]*:#Uu', '$1=$2nomozbinding...', $string);
-		$string = preg_replace('#([a-z]*)[\x00-\x20\/]*=[\x00-\x20\/]*([\`\'\"]*)[\x00-\x20\/]*data[\x00-\x20]*:#Uu', '$1=$2nodata...', $string);
-		
-		return $string;
 	}
 }

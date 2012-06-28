@@ -16,7 +16,7 @@ namespace LMVC;
 
 class Registry extends \ArrayObject
 {
-    private static $_registry = NULL;
+    private static $instance = NULL;
 
 	/**
 	 * Prevent developers from directly creating a Registry object.
@@ -27,30 +27,16 @@ class Registry extends \ArrayObject
 	
     public static function getInstance()
     {
-        if (self::$_registry === NULL) {
-            self::init();
+        if (self::$instance === NULL) {
+            self::$instance = new Registry();
         }
 
-        return self::$_registry;
-    }
-
-    public static function setInstance(Registry $registry)
-    {
-        if (self::$_registry !== NULL) {
-            throw new Exception('Registry is already initialized');
-        }
-
-        self::$_registry = $registry;
-    }
-
-    protected static function init()
-    {
-        self::setInstance(new Registry());
+        return self::$instance;
     }
 
     public static function _unsetInstance()
     {
-        self::$_registry = NULL;
+        self::$instance = NULL;
     }
 
     public static function get($index)
@@ -80,10 +66,10 @@ class Registry extends \ArrayObject
 
     public static function isRegistered($index)
     {
-        if (self::$_registry === null) {
+        if (self::$instance === null) {
             return false;
         }
-        return self::$_registry->offsetExists($index);
+        return self::$instance->offsetExists($index);
     }
 
     public function __construct($array = array(), $flags = parent::ARRAY_AS_PROPS)

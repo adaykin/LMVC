@@ -28,24 +28,10 @@ class Benchmark
     public static function getInstance()
     {
         if (self::$instance === null) {
-            self::init();
+            self::$instance = new Benchmark();
         }
 
         return self::$instance;
-    }
-
-    public static function setInstance(Benchmark $bench)
-    {
-        if (self::$instance !== null) {
-            throw new Exception('Benchmark is already initialized');
-        }
-
-        self::$instance = $bench;
-    }
-
-    protected static function init()
-    {
-        self::setInstance(new Benchmark());
     }
 
     public static function _unsetInstance()

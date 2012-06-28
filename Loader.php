@@ -29,11 +29,11 @@ class Loader
 	 */
 	public static function loadVendor($name)
 	{
-		if(!file_exists(APP_URL . DIRECTORY_SEPARATOR . "Vendor" . DIRECTORY_SEPARATOR . $name)) {
+		if(!file_exists(APP_URL . DIRECTORY_SEPARATOR . 'Vendor' . DIRECTORY_SEPARATOR . $name)) {
 			throw new Exception("Failed to load $name");
 		}
 		
-		include APP_URL . DIRECTORY_SEPARATOR . "Vendor" . DIRECTORY_SEPARATOR . $name;
+		include APP_URL . DIRECTORY_SEPARATOR . 'Vendor' . DIRECTORY_SEPARATOR . $name;
 	}
 	
 	/**
@@ -43,10 +43,10 @@ class Loader
 	 */
 	public static function loadModel($name)
 	{
-		if(!file_exists(APP_URL . DIRECTORY_SEPARATOR . "application" . DIRECTORY_SEPARATOR . "models" . DIRECTORY_SEPARATOR . $name)) {
+		if(!file_exists(APP_URL . DIRECTORY_SEPARATOR . 'application' . DIRECTORY_SEPARATOR . 'models' . DIRECTORY_SEPARATOR . $name . '.php')) {
 			throw new Exception("Failed to load $name");
 		}
 		
-		include APP_URL . DIRECTORY_SEPARATOR . "application" . DIRECTORY_SEPARATOR . "models" . DIRECTORY_SEPARATOR . $name;
+		include APP_URL . DIRECTORY_SEPARATOR . 'application' . DIRECTORY_SEPARATOR . 'models' . DIRECTORY_SEPARATOR . $name . '.php';
 	}
 }
